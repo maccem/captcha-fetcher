@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchWindowException
 import requests
 from PIL import Image
 from io import BytesIO
@@ -40,6 +41,9 @@ try:
             file_loc += "3x3/"
         with open(f"{file_loc}/{uuid.uuid4()}.jpg", 'wb') as file:
             file.write(response.content)
+
+except:
+    driver.quit()
 
 finally:
     driver.quit()
